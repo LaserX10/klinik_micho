@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <!-- model.name form view -->
+        <record id="klinik_obat_view_form" model="ir.ui.view">
+            <field name="name">klinik.obat.view.form</field>
+            <field name="model">klinik.obat</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group name="name" string="Informasi Obat">    
+                                <field name="kode_obat" />
+                                <field name="nama_obat" />
+                                <field name="jenis_obat" placeholder="Pilih Jenis Obat"/>
+                            </group>
+                            <group name="name2" string="Status Obat">    
+                                <field name="stok_obat" />
+                                <field name="harga_obat" />
+                                <field name="updated_at" />
+                            </group>
+                            <!-- Add your fields here -->
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- model.name tree view -->
+        <record id="klinik_obat_view_tree" model="ir.ui.view">
+            <field name="name">klinik.obat.view.tree</field>
+            <field name="model">klinik.obat</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- Add your fields here -->
+                    <field name="kode_obat" />
+                    <field name="nama_obat" />
+                    <field name="jenis_obat" />
+                    <field name="stok_obat" />
+                    <field name="harga_obat" />
+                    <field name="updated_at" />
+                </tree>
+            </field>
+        </record>
+        
+        <!-- model.name action window -->
+        <record id="klinik_obat_action" model="ir.actions.act_window">
+            <field name="name">Data Obat</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">klinik.obat</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->
+        <menuitem id="klinik_micho_menu_root" name="Klinik Micho" sequence="1"/>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="obat_menu_act" name="Obat" parent="klinik_micho_menu_root" action="klinik_obat_action" sequence="1"/>
+    
+    </data>
+    
+
+</odoo>

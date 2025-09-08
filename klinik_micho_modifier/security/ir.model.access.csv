@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_klinik_pasien,access.klinik.pasien,model_klinik_pasien,,1,1,1,1
+access_klinik_dokter,access.klinik.dokter,model_klinik_dokter,,1,1,1,1
+access_klinik_administrasi,access.klinik.administrasi,model_klinik_administrasi,,1,1,1,1
+access_klinik_obat,access.klinik.obat,model_klinik_obat,,1,1,1,1
+access_klinik_resep,access.klinik.resep,model_klinik_resep,,1,1,1,1

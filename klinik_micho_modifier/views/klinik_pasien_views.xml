@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <!-- model.name form view -->
+        <record id="klinik_pasien_view_form" model="ir.ui.view">
+            <field name="name">klinik.pasien.view.form</field>
+            <field name="model">klinik.pasien</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group name="name" string="Informasi Pasien">    
+                                <field name="kode_pasien" />
+                                <field name="nama_pasien" />
+                                <field name="jenis_kelamin" placeholder="Pilih Jenis Kelamin"/>
+                                <field name="alamat" />
+                            </group>
+                            <group name="name2" string="Status Pasien">    
+                                <field name="status" placeholder="Pilih Status"/>
+                                <field name="updated_at" />
+                            </group>
+                            <!-- Add your fields here -->
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- model.name tree view -->
+        <record id="klinik_pasien_view_tree" model="ir.ui.view">
+            <field name="name">klinik.pasien.view.tree</field>
+            <field name="model">klinik.pasien</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- Add your fields here -->
+                    <field name="kode_pasien" />
+                    <field name="nama_pasien" />
+                    <field name="jenis_kelamin" />
+                    <field name="alamat" />
+                    <field name="status" />
+                    <field name="updated_at" />
+                </tree>
+            </field>
+        </record>
+        
+        <!-- model.name action window -->
+        <record id="klinik_pasien_action" model="ir.actions.act_window">
+            <field name="name">Data Pasien</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">klinik.pasien</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->
+        <menuitem id="klinik_micho_menu_root" name="Klinik Micho" sequence="1"/>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="pasien_menu_act" name="Pasien" parent="klinik_micho_menu_root" action="klinik_pasien_action" sequence="1"/>
+    
+    </data>
+    
+
+</odoo>
