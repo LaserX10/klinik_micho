@@ -4,3 +4,6 @@ access_klinik_dokter,access.klinik.dokter,model_klinik_dokter,,1,1,1,1
 access_klinik_administrasi,access.klinik.administrasi,model_klinik_administrasi,,1,1,1,1
 access_klinik_obat,access.klinik.obat,model_klinik_obat,,1,1,1,1
 access_klinik_resep,access.klinik.resep,model_klinik_resep,,1,1,1,1
+access_klinik_invoice,access.klinik.invoice,model_klinik_invoice,,1,1,1,1
+access_klinik_invoice_line,access.klinik.invoice.line,model_klinik_invoice_line,,1,1,1,1
+access_set_stok_obat_wizard,access.set.stok.obat.wizard,model_set_stok_obat_wizard,,1,1,1,1

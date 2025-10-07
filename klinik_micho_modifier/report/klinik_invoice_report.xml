@@ -1,0 +1,224 @@
+<odoo>
+
+    <template id="report_invoice">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="header">
+                    <!-- Header Section -->
+                    <div class="invoice-header clearfix">
+                        <div class="company-info" style="float: left; width: 60%;">
+                            <h3><strong>Klinik Micho</strong></h3>
+                            <p>Jl. Babakan Cianjur No. 20, Sukaraja, Kec. Cicendo<br/>
+                            Kota Bandung, Jawa Barat 40175<br/>
+                            Indonesia<br/>
+                            Tel: (0823) 7415-8866</p>
+                        </div>
+                        
+                        <div class="invoice-info" style="float: right; width: 35%; text-align: right;">
+                            <div class="logo-container" style="margin-bottom: 10px;">
+                                <img src="/klinik_micho_modifier/static/src/img/logo_klinik.png"
+                                    style="max-width: 100px; height: auto;" alt="Logo Klinik Micho"/>
+                            </div>
+                            <p><t t-esc="context_timestamp(datetime.datetime.now()).strftime('%d %B %Y')"/></p>
+                        </div>
+                        <div style="clear: both;"></div>
+                    </div>
+                </div>
+                <div class="page">
+                    <style>
+                        .invoice-header {
+                            border-bottom: 2px solid #dee2e6;
+                            margin-bottom: 30px;
+                            padding-bottom: 20px;
+                        }
+                        .company-info {
+                            float: left;
+                            width: 50%;
+                        }
+                        .invoice-info {
+                            float: right;
+                            width: 40%;
+                            text-align: right;
+                        }
+                        .logo-container {
+                            margin-bottom: 20px;
+                        }
+                        .logo-container img {
+                            max-width: 150px;
+                            max-height: 80px;
+                            width: auto;
+                            height: auto;
+                        }
+                        .invoice-title {
+                            font-size: 36px;
+                            font-weight: bold;
+                            color: #212529;
+                            margin: 30px 0 20px 0;
+                        }
+                        .invoice-details {
+                            margin-bottom: 30px;
+                        }
+                        .invoice-details table {
+                            width: 100%;
+                            border-collapse: collapse;
+                        }
+                        .invoice-details td {
+                            padding: 4px 0;
+                            border: none;
+                        }
+                        .items-table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            margin-bottom: 30px;
+                        }
+                        .items-table th {
+                            background-color: #f8f9fa;
+                            padding: 12px 8px;
+                            text-align: left;
+                            border-bottom: 2px solid #dee2e6;
+                            font-weight: bold;
+                        }
+                        .items-table td {
+                            padding: 10px 8px;
+                            border-bottom: 1px solid #dee2e6;
+                        }
+                        .items-table .text-right {
+                            text-align: right;
+                        }
+                        .items-table .text-center {
+                            text-align: center;
+                        }
+                        .totals-section {
+                            float: right;
+                            width: 300px;
+                            margin-top: 20px;
+                        }
+                        .totals-table {
+                            width: 100%;
+                            border-collapse: collapse;
+                        }
+                        .totals-table td {
+                            padding: 8px 12px;
+                            border: none;
+                        }
+                        .totals-table .subtotal-row {
+                            border-bottom: 1px solid #dee2e6;
+                        }
+                        .totals-table .total-row {
+                            font-weight: bold;
+                            font-size: 18px;
+                            border-top: 2px solid #212529;
+                            border-bottom: 3px double #212529;
+                        }
+                        .footer-info {
+                            clear: both;
+                            margin-top: 60px;
+                            padding-top: 20px;
+                            border-top: 1px solid #dee2e6;
+                            font-size: 12px;
+                            color: #6c757d;
+                        }
+                        .clearfix::after {
+                            content: "";
+                            display: table;
+                            clear: both;
+                        }
+                    </style>
+
+
+                    <!-- Invoice Title -->
+                    <h1 class="invoice-title">Invoice</h1>
+
+                    <!-- Invoice Details -->
+                    <div class="invoice-details">
+                        <div style="width: 50%; float: left;">
+                            <table>
+                                <tr>
+                                    <td width="120"><strong>Kode Invoice:</strong></td>
+                                    <td><t t-esc="o.kode_invoice"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Tanggal:</strong></td>
+                                    <td><t t-esc="o.tanggal"/></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="width: 45%; float: right;">
+                            <table>
+                                <tr>
+                                    <td width="120"><strong>Nama Pasien:</strong></td>
+                                    <td><t t-esc="o.pasien_id.nama_pasien if o.pasien_id else 'N/A'"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Alamat:</strong></td>
+                                    <td><t t-esc="o.pasien_id.alamat if o.pasien_id else 'N/A'"/></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="clear: both;"></div>
+                    </div>
+
+                    <!-- Items Table -->
+                    <table class="items-table">
+                        <thead>
+                            <tr>
+                                <th width="40%">Obat</th>
+                                <th width="20%" class="text-right">Harga Obat</th>
+                                <th width="15%" class="text-center">Quantity</th>
+                                <th width="25%" class="text-right">Sub Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o.klinik_line_ids" t-as="line">
+                                <td><t t-esc="line.obat_id.nama_obat"/></td>
+                                <td class="text-right">Rp<t t-esc="'{:,.0f}'.format(line.harga_obat)"/></td>
+                                <td class="text-center"><t t-esc="int(line.qty)"/></td>
+                                <td class="text-right">Rp<t t-esc="'{:,.0f}'.format(line.sub_total)"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Totals Section -->
+                    <div class="totals-section">
+                        <table class="totals-table">
+                            <tr class="subtotal-row">
+                                <td><strong>Subtotal Obat</strong></td>
+                                <td class="text-right">Rp<t t-esc="'{:,.0f}'.format(sum(line.sub_total for line in o.klinik_line_ids))"/></td>
+                            </tr>
+                            <tr class="subtotal-row">
+                                <td><strong>Biaya Layanan</strong></td>
+                                <td class="text-right">Rp<t t-esc="'{:,.0f}'.format(o.biaya_layanan or 0)"/></td>
+                            </tr>
+                            <tr class="total-row">
+                                <td><strong>Total</strong></td>
+                                <td class="text-right">Rp<t t-esc="'{:,.0f}'.format(o.total or 0)"/></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="footer-info">
+                        <div style="float: left;">
+                            <strong>Vendor/Website:</strong> www.klinikmicho.com
+                        </div>
+                        <div style="float: right;">
+                            <strong>Vendor Email:</strong> info@klinikmicho.com | <strong>Phone:</strong> +6282374158866
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_klinik_invoice" model="ir.actions.report">
+        <field name="name">Klinik Invoice Report</field>
+        <field name="model">klinik.invoice</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">klinik_micho_modifier.report_invoice</field>
+        <field name="report_file">klinik_micho_modifier.report_invoice</field>
+        <field name="print_report_name">'Invoice Report - %s' % (object.kode_invoice)</field>
+        <field name="binding_model_id" ref="klinik_micho_modifier.model_klinik_invoice"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

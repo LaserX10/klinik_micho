@@ -15,8 +15,11 @@
                             <field name="kode_administrasi" />
                             <field name="tanggal" />
                             <field name="pasien_id" placeholder="Pilih Pasien"/>
-                            <field name="dokter_id" placeholder="Pilih Dokter"/>
-                            <field name="biaya" />
+                            <field name="usia"/>
+                            <field name="jenis_kelamin"/>
+                            <field name="dokter_id" placeholder="Pilih Dokter" required="True"/>
+                            <field name="biaya" string="Biaya Layanan"/>
+                            <field name="resep_id"/>
                         </group>
                     </sheet>
                 </form>
@@ -33,8 +36,11 @@
                     <field name="kode_administrasi" />
                     <field name="tanggal" />
                     <field name="pasien_id" />
+                    <field name="usia"/>
+                    <field name="jenis_kelamin"/>
                     <field name="dokter_id" />
-                    <field name="biaya" />
+                    <field name="biaya" string="Biaya Layanan" />
+                    <field name="resep_id"/>
                 </tree>
             </field>
         </record>
@@ -51,7 +57,7 @@
         <menuitem id="klinik_micho_menu_root" name="Klinik Micho" sequence="1"/>
 
         <!-- This Menu Item must have a parent and an action -->
-        <menuitem id="administrasi_menu_act" name="Administrasi" parent="klinik_micho_menu_root" action="klinik_administrasi_action" sequence="1"/>
+        <menuitem id="administrasi_menu_act" name="Administrasi" parent="klinik_micho_menu_root" action="klinik_administrasi_action" sequence="6"/>
     
     </data>
     

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <!-- model.name form view -->
+        <record id="klinik_invoice_view_form" model="ir.ui.view">
+            <field name="name">klinik.invoice.view.form</field>
+            <field name="model">klinik.invoice</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+                        <field name="status" widget="statusbar" />
+                        <button string="Post" name="action_post" type="object" class="oe_highlight" groups="account.group_account_manager" attrs="{'invisible': [('status','in',('posted','cancel'))]}"/>
+                        <button string="Cancel" name="action_cancel" type="object" class="oe_highlight" attrs="{'invisible': [('status','in',('cancel','draft'))]}"/>
+                        <button string="Set to Draft" name="action_draft" type="object" class="oe_highlight" attrs="{'invisible': [('status','in',('draft','posted'))]}"/>
+                    </header>
+                    <sheet>
+                        <group string="Invoice">
+                            <!-- Add your fields here -->
+                            <field name="kode_invoice" />
+                            <field name="tanggal" invisible="0" attrs="{'readonly': [('status','in',('posted','cancel'))]}" required="True"/>
+                            <field name="administrasi_id" attrs="{'readonly': [('status','in',('posted','cancel'))]}" required="True"/>
+                            <field name="pasien_id" readonly="1" force_save="1" />
+                            <field name="dokter_id" readonly="1" force_save="1"/>
+                            <field name="biaya_layanan" readonly="1" force_save="1"/>
+                            <field name="resep_id" readonly="1" force_save="1"/>
+                        </group>
+                        <notebook>
+                            <page name="invoice_line" string="Invoice Line">
+                                <field name="klinik_line_ids" force_save="1" attrs="{'readonly': [('status','in',('posted','cancel'))]}">
+                                    <tree editable="bottom">
+                                        <field name="obat_id"/>
+                                        <field name="harga_obat" string="Harga Obat"/>
+                                        <field name="qty"/>
+                                        <field name="sub_total"/>
+                                    </tree>
+                                </field>
+
+                                <group class="oe_right" style="margin-top: 15px; width: 300px;">
+                                    <group>
+                                        <field name="total" string="Grand Total" readonly="1"
+                                            widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- model.name tree view -->
+        <record id="klinik_invoice_view_tree" model="ir.ui.view">
+            <field name="name">klinik.invoice.view.tree</field>
+            <field name="model">klinik.invoice</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- Add your fields here -->
+                    <field name="kode_invoice" />
+                    <field name="tanggal" />
+                    <field name="administrasi_id" />
+                    <field name="pasien_id" />
+                    <field name="dokter_id" />
+                    <!-- <field name="biaya_layanan"/> -->
+                    <field name="resep_id" />
+                    <field name="total" />
+                </tree>
+            </field>
+        </record>
+        
+        <!-- model.name action window -->
+        <record id="klinik_invoice_action" model="ir.actions.act_window">
+            <field name="name">Invoice</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">klinik.invoice</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->
+        <menuitem id="klinik_micho_menu_root" name="Klinik Micho" sequence="1"/>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="invoice_menu_act" name="Invoice" parent="klinik_micho_menu_root" action="klinik_invoice_action" sequence="7"/>
+    
+    </data>
+    
+
+</odoo>

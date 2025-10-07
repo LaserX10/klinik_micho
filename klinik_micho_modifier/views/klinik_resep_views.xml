@@ -15,6 +15,8 @@
                                 <field name="kode_resep" />
                                 <field name="obat_ids" placeholder="Pilih Obat" widget="many2many_tags"/>
                                 <field name="tanggal" />
+                                <field name="pasien_id"/>
+                                <field name="dokter_id"/>
                                 <field name="keterangan" />
                         </group>
                     </sheet>
@@ -32,6 +34,8 @@
                     <field name="kode_resep" />
                     <field name="obat_ids" widget="many2many_tags" />
                     <field name="tanggal" />
+                    <field name="pasien_id"/>
+                    <field name="dokter_id"/>
                     <field name="keterangan" />
                 </tree>
             </field>
@@ -49,7 +53,7 @@
         <menuitem id="klinik_micho_menu_root" name="Klinik Micho" sequence="1"/>
 
         <!-- This Menu Item must have a parent and an action -->
-        <menuitem id="resep_menu_act" name="Resep" parent="klinik_micho_menu_root" action="klinik_resep_action" sequence="1"/>
+        <menuitem id="resep_menu_act" name="Resep" parent="klinik_micho_menu_root" action="klinik_resep_action" sequence="5"/>
     
     </data>
     

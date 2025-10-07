@@ -55,7 +55,7 @@
         <menuitem id="klinik_micho_menu_root" name="Klinik Micho" sequence="1"/>
 
         <!-- This Menu Item must have a parent and an action -->
-        <menuitem id="dokter_menu_act" name="Dokter" parent="klinik_micho_menu_root" action="klinik_dokter_action" sequence="1"/>
+        <menuitem id="dokter_menu_act" name="Dokter" parent="klinik_micho_menu_root" action="klinik_dokter_action" sequence="2"/>
     
     </data>
     

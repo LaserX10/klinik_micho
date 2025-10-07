@@ -5,3 +5,4 @@ from . import dokter
 from . import administrasi
 from . import obat
 from . import resep
+from . import invoice

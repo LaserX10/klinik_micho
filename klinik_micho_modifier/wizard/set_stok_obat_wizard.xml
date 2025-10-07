@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <!-- model.name form view -->
+        <record id="set_stok_obat_view_form" model="ir.ui.view">
+            <field name="name">set.stok.obat.view.form</field>
+            <field name="model">set.stok.obat.wizard</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <!-- Add your fields here -->
+                            <field name="obat_id" />
+                            <field name="stok_obat" />
+                        </group>
+                        <footer>
+                            <button string="Confirm" name="action_confirm" type="object" class="oe_highlight"/>
+                            <button string="Cancel" special="cancel" />
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <!-- model.name action window -->
+        <record id="set_stok_obat_action" model="ir.actions.act_window">
+            <field name="name">Tambah Stok Obat</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">set.stok.obat.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="set_stok_obat_view_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="set_stok_obat_act" name="Set Stok Obat" parent="klinik_micho_menu_root" action="set_stok_obat_action" sequence="4"/>
+    
+    </data>
+    
+
+</odoo>

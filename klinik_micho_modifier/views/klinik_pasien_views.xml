@@ -15,6 +15,7 @@
                                 <field name="kode_pasien" />
                                 <field name="nama_pasien" />
                                 <field name="jenis_kelamin" placeholder="Pilih Jenis Kelamin"/>
+                                <field name="usia"/>
                                 <field name="alamat" />
                             </group>
                             <group name="name2" string="Status Pasien">    
@@ -38,6 +39,7 @@
                     <field name="kode_pasien" />
                     <field name="nama_pasien" />
                     <field name="jenis_kelamin" />
+                    <field name="usia" />
                     <field name="alamat" />
                     <field name="status" />
                     <field name="updated_at" />

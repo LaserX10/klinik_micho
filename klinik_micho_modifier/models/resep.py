@@ -11,5 +11,7 @@ class KlinikResep(models.Model):
     obat_ids = fields.Many2many(comodel_name='klinik.obat', string='')
     tanggal = fields.Date(string='')
     keterangan = fields.Text('Keterangan')
+    pasien_id = fields.Many2one(comodel_name='klinik.pasien')
+    dokter_id = fields.Many2one(comodel_name='klinik.dokter')
     
     

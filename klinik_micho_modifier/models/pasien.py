@@ -13,6 +13,8 @@ class KlinikPasien(models.Model):
         ('laki_laki', 'Laki-laki'),
         ('perempuan', 'Perempuan'),
     ], string='Jenis Kelamin', required=True)
+    usia = fields.Integer(string='')
+    
     status = fields.Selection([
         ('belum_menikah', 'Belum Menikah'),
         ('sudah_menikah', 'Sudah Menikah'),

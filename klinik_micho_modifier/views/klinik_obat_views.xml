@@ -34,6 +34,9 @@
             <field name="model">klinik.obat</field>
             <field name="arch" type="xml">
                 <tree>
+                    <header>
+                        <button string="Set Stok Obat" name="%(klinik_micho_modifier.set_stok_obat_action)d" type="action" class="oe_highlight" />
+                    </header>
                     <!-- Add your fields here -->
                     <field name="kode_obat" />
                     <field name="nama_obat" />
@@ -57,7 +60,7 @@
         <menuitem id="klinik_micho_menu_root" name="Klinik Micho" sequence="1"/>
 
         <!-- This Menu Item must have a parent and an action -->
-        <menuitem id="obat_menu_act" name="Obat" parent="klinik_micho_menu_root" action="klinik_obat_action" sequence="1"/>
+        <menuitem id="obat_menu_act" name="Obat" parent="klinik_micho_menu_root" action="klinik_obat_action" sequence="3"/>
     
     </data>
     
